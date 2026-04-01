@@ -18,7 +18,7 @@ Patterns from building a platform in 5 days
 
 ## The uncertainty is the point
 
-![bg right:30% contain](/Users/husainal-mohssen/src/effective_claude_code/assets/we-didnt-start-the-fire.svg)
+![bg right:30% contain](assets/storm-front-cover.jpg)
 
 - No one has this figured out. Not us, not anyone.
 - The imperfection is permanent, not temporary.
@@ -200,7 +200,7 @@ Escalation: "start an agent" -> "don't do this yourself" -> "ALL agents not you"
 
 ## Know when to hold 'em
 
-![bg right:30% contain](/Users/husainal-mohssen/src/effective_claude_code/assets/the-gambler.svg)
+![bg right:30% contain](assets/the-gambler-cover.jpg)
 
 > *"You got to know when to hold 'em, know when to fold 'em"*
 > -- Kenny Rogers
@@ -313,6 +313,28 @@ Before committing to any approach:
 - Works for architecture, API design, error handling, naming
 
 Don't accept the first answer. Make the model compete with itself.
+
+---
+
+## Appendix: Use the advisor sidekick
+
+```bash
+./advice.sh
+```
+
+Run it in a **separate terminal** alongside your Claude Code session.
+
+- Coaching TUI that knows all the best practices in this talk
+- Advises on prompting, agent orchestration, context management, verification
+- **Never writes code or touches your files** — only advises
+- Gets smarter as you add docs to `docs/`
+
+Ask it things like:
+- *"I have a 20-file refactor. How should I structure this?"*
+- *"My session is getting long. What should I do?"*
+- *"Should I use subagents here?"*
+
+`github.com/mohsseha/effective_claude_code`
 
 ---
 

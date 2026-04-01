@@ -6,6 +6,11 @@ docs/cheat_sheet.pdf
 # Raw transcripts (large, used to create docs, not reference themselves)
 docs/transcripts/
 
+# Images (only SVGs belong in the repo)
+*.png
+*.jpg
+*.jpeg
+
 # OS
 .DS_Store
 
