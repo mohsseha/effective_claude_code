@@ -1,0 +1,35 @@
+[
+  {
+    "id": "arch-1",
+    "type": "GOOD-IDEA",
+    "hypothesis": "Using frozen source-of-truth spec documents (SKILL.md, end2end stories, CRITICAL_DEMO) as the single canonical reference that both build agents and audit agents read from -- rather than letting code be the source of truth -- prevented specification drift during multi-agent parallel builds.",
+    "brief_reasoning": "The project ran 7+ agents in parallel for spec writing, code building, and auditing. When the user caught that the demo agent was being 'polluted' by code generation, the assistant corrected course to keep the demo agent on a separate track reading only from frozen specs/stories. This pattern of immutable source-of-truth documents that agents read but don't modify enabled effective cross-auditing (agents checking each other's work against the same reference) and caught real inconsistencies like EMP-style ID remnants, missing seed data fields, and schema mismatches.",
+    "key_transcript_references": [
+      "line ~12103: User corrects 'the demo agent only sees the input stories and it does not get polluted by any fuckups happening in the code generation'",
+      "line ~10830: User instructs 'workers that created the stories to update the specifications... same agents will audit each others work... everyone should be told not to edit stories'",
+      "line ~9500: Data Expert agent identifies '7 known data gaps/inconsistencies' by auditing code against spec documents"
+    ]
+  },
+  {
+    "id": "arch-2",
+    "type": "BAD-IDEA",
+    "hypothesis": "Implementing hard gates (non-negotiable policy denials) inside the angel scoring layer rather than exclusively in the optimizer created a dual-enforcement architecture that confused the developers and required repeated deep-dive investigations to explain.",
+    "brief_reasoning": "Hard gates were implemented in the Justice angel (ethical check) AND the optimizer (operational check). This led to confusion about where coverage checking actually happens, whether the system's staffing buffer makes hard gates redundant, and what the correct object_ value should be when shift_id is null. The user needed a 3-agent research pipeline just to answer 'what is a hard gate?' from a listener, then a second 3-agent pipeline to understand why it fires at the angel level. The VPE synthesis bug (passing None instead of 'request' as object_) was a direct consequence of this layered architecture creating ambiguous data flow between angel -> VPE -> optimizer.",
+    "key_transcript_references": [
+      "line ~22112: User asks for 3-agent pipeline to explain hard gates after a listener asks 'what is a hard gate?'",
+      "line ~22144: User confused: 'I thought our system was setup so that we have a lot of extra workers... wouldn't this have to happen at the optimizer level not the angel level?'",
+      "line ~21935: Bug root cause -- VPE passes None as object_ when shift_id is null because of ambiguous data flow between angel and optimizer layers"
+    ]
+  },
+  {
+    "id": "arch-3",
+    "type": "GOOD-IDEA",
+    "hypothesis": "The multi-agent workflow pattern of 'builder agents in parallel -> sequential test agent -> auditor agents in parallel -> selector agent' was an effective architecture for exploring design alternatives without the orchestrating human becoming a bottleneck.",
+    "brief_reasoning": "This pattern was used repeatedly and evolved over the transcript: first for spec writing (7 agents), then for E2E story validation (4 test agents with bug ticketing), then for the alternative demo video workflow (3 explorers -> test -> 3 auditors -> selector -> video). The key insight was making the test agent sequential to avoid state clobbering while keeping exploration and auditing parallel. The pattern successfully found real bugs (BUG-004 P0: justice angel doesn't filter coverage by shift_id), produced ranked alternatives with different lenses (capability showcase vs investor messaging vs technical accuracy), and let the user stay at the strategic level while agents did the detailed work.",
+    "key_transcript_references": [
+      "line ~17104: 'Option B hits the sweet spot: each agent owns a stream end-to-end (build + test), so they internalize the spec deeply. The single integration agent at the end only wires routes'",
+      "line ~13407: 'Agent 2 already finished. It found a P0: BUG-004 -- justice angel does not filter coverage by shift_id, so the access hard gate never fires correctly for non-default shifts'",
+      "line ~22356: Alternative demo workflow: '3 explorers run in parallel... Test agent runs sequentially (avoids clobbering)... 3 auditors run in parallel (each reviews ALL 3 proposals from different lenses)'"
+    ]
+  }
+]

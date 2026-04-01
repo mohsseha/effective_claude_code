@@ -1,0 +1,38 @@
+[
+  {
+    "id": "qa-1",
+    "type": "GOOD-IDEA",
+    "hypothesis": "Running Selenium QA suites as parallel background agents with structured pass/fail reporting per test case enabled rapid detection of regressions after multi-agent code changes, catching avatar filename mismatches, timing issues, and stale name references that would otherwise have shipped.",
+    "brief_reasoning": "After the 7-agent team made sweeping changes (gender-neutral names, seed data fixes, UI bug fixes), QA-Worker and QA-Admin agents ran Selenium suites in parallel and surfaced specific failures: avatar files still named EMP001.jpg vs new IDs, timing issues in test_04, and leftover 'maria' references. Without this automated QA gate, the multi-agent changes would have shipped broken. The structured table output (12 passed, 0 failed) made results instantly scannable.",
+    "key_transcript_references": [
+      "line ~1508: QA-Worker and QA-Admin Selenium agents running in parallel after 7-agent team changes",
+      "line ~1526: 'avatar files are still named EMP001.jpg etc. but the code references alex.santos.jpg' — caught by QA run",
+      "line ~2901: 'Test_04 fixed — timing issue resolved with proper waits, and all maria references renamed to alex'",
+      "line ~2919: 'Results: 12 passed, 0 failed (100.43s total)' — clean admin suite after fixes"
+    ]
+  },
+  {
+    "id": "qa-2",
+    "type": "BAD-IDEA",
+    "hypothesis": "The API's request deduplication (returning cached failed runs for identical payloads) created a hidden test-poisoning trap that wasted significant debugging time, because the developer and Claude chased phantom failures through container rebuilds, pytest cache clears, and endpoint probing before discovering the stale run was being returned by design.",
+    "brief_reasoning": "After fixing the null shift_id optimizer crash, tests kept failing despite the fix being correct. Claude tried rebuilding the orchestrator container, clearing pytest cache, manually curling different endpoints, and checking logs — at least 8 separate debugging steps across lines ~19857-19900 before discovering the API returned 'Duplicate request — returning cached run' for identical payloads. The fix required reseeding the entire database. This deduplication feature, while reasonable in production, made the test suite non-idempotent and created a debugging black hole.",
+    "key_transcript_references": [
+      "line ~19860: 'test is hitting the old failed run (same run_id from 17:44). The module-scoped fixture is cached'",
+      "line ~19896: 'Duplicate request — returning cached run' — the actual root cause after many debugging steps",
+      "line ~19901: Had to run 'python scripts/seed_demo_data.py' to clear stale state before tests could pass",
+      "line ~19845: 'Still failing. The container may not have picked up the change yet, or there is another issue' — misdiagnosis"
+    ]
+  },
+  {
+    "id": "qa-3",
+    "type": "GOOD-IDEA",
+    "hypothesis": "Using a researcher-then-auditor-then-summarizer three-agent pipeline for investigating production questions produced more accurate and trustworthy answers than single-agent investigation, because the auditor caught factual errors (off-by-one line numbers, date discrepancies) that would have been presented as truth in a single-pass answer.",
+    "brief_reasoning": "When a listener asked 'what is a hard gate?', the developer insisted on a 3-agent serial pipeline: researcher writes a sourced report, auditor verifies facts against code, summarizer distills. The auditor found '23/27 claims fully accurate, 3 off-by-one line numbers, 1 minor date field discrepancy' — errors that a single agent would have confidently presented. This pattern was reused for the follow-up questions about staffing buffers and gate architecture, catching the nuance that only 2 of 16 shifts were at exact minimum coverage (contradicting an assumption). The developer explicitly demanded this pattern multiple times: 'do the same workflow as above researcher->auditor->summarizer ALL are agents not you'.",
+    "key_transcript_references": [
+      "line ~22112: User demands: 'RESEARCHER->AUDITOR->SUMMARIZER ALL are agents not you'",
+      "line ~22124: 'Audit passed — 23/27 claims fully accurate, 3 off-by-one line numbers, 1 minor date field discrepancy'",
+      "line ~22177: Auditor-verified finding: 'David's shift (SHF0035) is one of only 2 deliberately set at exact minimum' — nuance a single agent would likely miss",
+      "line ~22144: Developer reuses pattern for follow-up: 'do the same workflow as above researcher->auditor->summarizer'"
+    ]
+  }
+]

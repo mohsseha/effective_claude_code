@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 0.4in; size: letter; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 7.2pt;
+    line-height: 1.32;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 10px;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+  .header h1 { font-size: 14pt; font-weight: 800; letter-spacing: -0.5px; }
+  .header .sub { font-size: 7.5pt; color: #555; margin-top: 1px; }
+  .cols {
+    column-count: 3;
+    column-gap: 10px;
+    column-rule: 1px solid #ddd;
+  }
+  .card {
+    break-inside: avoid;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    padding: 4px 5px;
+    margin-bottom: 5px;
+    background: #fdfdfd;
+  }
+  .card-head {
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: #fff;
+    background: #2d2d2d;
+    margin: -4px -5px 3px -5px;
+    padding: 2.5px 5px;
+    border-radius: 3px 3px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-head .num {
+    background: #e85d3a;
+    color: #fff;
+    font-size: 7pt;
+    font-weight: 800;
+    border-radius: 2px;
+    padding: 0 3.5px;
+    min-width: 14px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .card-head.blue { background: #1a5276; }
+  .card-head.green { background: #1e6e3e; }
+  .card-head.red { background: #922; }
+  .card-head.purple { background: #5b2c6f; }
+  pre {
+    background: #f3f3f3;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    padding: 2.5px 4px;
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    font-size: 6.6pt;
+    line-height: 1.28;
+    white-space: pre-wrap;
+    margin: 2px 0;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 2px 0; font-size: 6.8pt; }
+  th { background: #eee; font-weight: 700; text-align: left; padding: 1.5px 3px; border: 1px solid #d0d0d0; }
+  td { padding: 1.5px 3px; border: 1px solid #e0e0e0; vertical-align: top; }
+  .g { color: #1e6e3e; font-weight: 600; }
+  .r { color: #a22; font-weight: 600; }
+  .b { color: #1a5276; font-weight: 600; }
+  strong { font-weight: 700; }
+  .note { color: #555; font-style: italic; }
+  .sep {
+    break-before: page;
+    border-top: 2px solid #1a1a1a;
+    padding-top: 4px;
+    margin-top: 2px;
+  }
+  .sep-head {
+    text-align: center;
+    font-size: 9pt;
+    font-weight: 800;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .takeaway-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  .takeaway-grid .tk {
+    background: #2d2d2d;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 6.8pt;
+    font-weight: 600;
+  }
+  .tk .tn { color: #e85d3a; font-weight: 800; margin-right: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Effective Claude Code — Cheat Sheet</h1>
+  <div class="sub">25 Rules · Husain Al-Mohssen · March 2026 · "You don't write code. You design agent workflows that produce code."</div>
+</div>
+
+<div class="cols">
+
+<!-- 1 -->
+<div class="card">
+  <div class="card-head red"><span class="num">1</span>CONTEXT SIZE IS THE #1 LEVER</div>
+  <pre>4K tokens  ≈ 97% accuracy
+128K tokens ≈ 13–81% accuracy</pre>
+  Give each agent the <strong>smallest sufficient context</strong>. This is THE core skill. Always ask: <em>too much or too little?</em>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="card-head"><span class="num">2</span>SUBAGENTS ARE THE PRIMARY PATTERN</div>
+  <table>
+    <tr><td class="g">GOOD</td><td>Leader → spawns agent → agent gets <strong>[code + ticket]</strong> only</td></tr>
+    <tr><td class="r">BAD</td><td>Leader does everything in one long session</td></tr>
+  </table>
+  Subagents start fresh = small context = smarter.
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="card-head"><span class="num">3</span>LEADER NEVER IMPLEMENTS</div>
+  Leader: orchestrate, delegate, review. Agents: implement, test, merge.
+  <pre>Escalation sequence:
+"Start an agent"
+→ "Don't do this yourself"
+→ "ALL work by agents, not you"
+→ "Dude, have an agent do it"</pre>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="card-head"><span class="num">4</span>CROSS-AUDIT BEATS SELF-AUDIT</div>
+  <table>
+    <tr><td class="r">WEAK</td><td>Agent checks own work (self-consistent = blind)</td></tr>
+    <tr><td>OK</td><td>Separate auditor agent</td></tr>
+    <tr><td class="g">BEST</td><td>Builder A reviews Builder C (knows the code)</td></tr>
+  </table>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="card-head red"><span class="num">5</span>FORCE UNDERSTANDING FIRST</div>
+  <pre>"Ask me 3 yes/no questions that show you understood me."
+"Draw me a diagram of how you'll do this."
+"Give me 2 options with trade-offs."</pre>
+  <strong>The diagram IS the verification.</strong> Don't skip.
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <div class="card-head green"><span class="num">6</span>TESTABILITY = AUTONOMY</div>
+  <table>
+    <tr><td>Clear pass/fail test</td><td class="g">→ run overnight, hands off</td></tr>
+    <tr><td>No test</td><td class="r">→ supervise everything</td></tr>
+  </table>
+  Build test infrastructure <strong>FIRST</strong>. Capability = ceiling. Tests = floor.
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <div class="card-head red"><span class="num">7</span>SPECS = REAL SOURCE CODE</div>
+  Code = build artifact (disposable). Specs = source of truth (maintained).
+  <pre>Multiple small specs > one big spec
+One spec per agent
+Out-of-date specs → broken pipeline</pre>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <div class="card-head red"><span class="num">8</span>AGENTS LIE</div>
+  <pre>Agent: "Done! All features implemented."
+Reality: Skipped hard parts. Deferred to "future versions."
+
+ALWAYS: "Show me file + line numbers for X."
+THEN:    Open the file. Read it yourself.</pre>
+</div>
+
+<!-- 9 -->
+<div class="card">
+  <div class="card-head"><span class="num">9</span>CONTEXT POISONING</div>
+  <table>
+    <tr><th>Symptom</th><td>Corrected it, but old assumption bleeds through</td></tr>
+    <tr><th>Cause</th><td>Self-consistency locks wrong path</td></tr>
+    <tr><th>Fix</th><td><strong>Start fresh. Don't fight it.</strong></td></tr>
+  </table>
+</div>
+
+<!-- 10 -->
+<div class="card">
+  <div class="card-head"><span class="num">10</span>THE COP TECHNIQUE</div>
+  <pre>"There are 3 bugs in this module. Find them."
+  → (even if made up — forces deeper search)
+
+"Top 3 worst bugs? Justify ranking."
+  → (forces prioritization, not just listing)</pre>
+</div>
+
+<!-- 11 -->
+<div class="card">
+  <div class="card-head green"><span class="num">11</span>SELENIUM IS SHOCKINGLY GOOD</div>
+  <pre>1 prompt → 30 min → ~6 months manual QA equivalent
+Recipe: stories/specs → Selenium → run app
+        → failures → parallel fixers → re-run gate</pre>
+</div>
+
+<!-- 12 -->
+<div class="card">
+  <div class="card-head blue"><span class="num">12</span>INDEPENDENT VERIFICATION PATHS</div>
+  <pre>Path 1: Spec → Code → Unit tests (code knows code)
+Path 2: Spec → Stories → Selenium  (never sees code)
+
+Paths disagree → real bug found.
+Story agents must NEVER see the code.</pre>
+</div>
+
+<!-- 13 -->
+<div class="card">
+  <div class="card-head"><span class="num">13</span>OUTPUT FORMAT = YOUR REVIEW SPEED</div>
+  <pre>FASTEST → SLOWEST for you to scan:
+Diagrams → Tables → Bullets → Paragraphs</pre>
+  Tables force prioritization. Always ask for tables over prose.
+</div>
+
+<!-- 14 -->
+<div class="card">
+  <div class="card-head"><span class="num">14</span>FREEZE SPECS BEFORE BUILDING</div>
+  <pre>git tag -a spec-v1</pre>
+  Agents edit specs without asking. 5/6 modules violated frozen spec. Commit constantly. Watch diffs.
+</div>
+
+<!-- 15 -->
+<div class="card">
+  <div class="card-head blue"><span class="num">15</span>ASK FOR ALTERNATIVES</div>
+  <pre>"Give me 3 ways to do this with trade-offs."</pre>
+  Prevents first-instinct bias. Reveals understanding. Spends tokens thinking before coding. Can have another agent choose.
+</div>
+
+<!-- 16 -->
+<div class="card">
+  <div class="card-head"><span class="num">16</span>CONTRADICTION-FINDERS ON SPECS</div>
+  <pre>"Start agents with different perspectives.
+ Read the specs. Highlight all contradictions."</pre>
+  Do <strong>before</strong> implementation. Finds issues invisible to humans.
+</div>
+
+<!-- 17 -->
+<div class="card">
+  <div class="card-head"><span class="num">17</span>PERSONAS FOR AUDITING</div>
+  <pre>"Agent from perspective of [foreman]."
+"Agents with different themes review code."</pre>
+  Diverse perspectives &gt; identical auditors.
+</div>
+
+<!-- 18 -->
+<div class="card">
+  <div class="card-head"><span class="num">18</span>META-PROGRAMMING PROGRESSION</div>
+  <pre>Day 1: "Write a function that..."
+Day 3: "3 agents implement, 2 auditors review"
+Day 5: "12-agent 5-phase pipeline w/ gates"</pre>
+  Natural evolution. ~44% still hands-on. Leverage = orchestration.
+</div>
+
+<!-- 19 -->
+<div class="card">
+  <div class="card-head"><span class="num">19</span>COMPRESS AND RESTART</div>
+  <pre>Degrading session →
+  1. Ask for summary
+  2. Start fresh
+  3. Feed summary in</pre>
+  <code>claude resume</code> costs nothing. Don't preserve sessions out of sentiment.
+</div>
+
+<!-- 20 -->
+<div class="card">
+  <div class="card-head"><span class="num">20</span>TRAINING DATA VERSION BIAS</div>
+  <pre>You: "Use Claude 4.6"   It uses: 4.5  (10–20%)</pre>
+  Be explicit. Repeat constraint. Verify version strings.
+</div>
+
+<!-- 21 -->
+<div class="card">
+  <div class="card-head"><span class="num">21</span>PLAN MODE IS UNRELIABLE</div>
+  <pre>You: "Plan first, don't implement."
+It:   Plans, then immediately implements.</pre>
+  <strong>Better:</strong> "Give me 3 alternatives" — forces thinking without building.
+</div>
+
+<!-- 22 -->
+<div class="card">
+  <div class="card-head purple"><span class="num">22</span>SETTINGS FILE = QUALITY OF LIFE</div>
+  <pre>~/.claude/settings.json
+→ auto-allow: read-only, linters, test runners</pre>
+  Not YOLO. Curated low-risk permissions. Kills yes/yes/yes fatigue.
+</div>
+
+<!-- 23 -->
+<div class="card">
+  <div class="card-head red"><span class="num">23</span>YOLO MODE RULES</div>
+  <pre>claude --dangerously-skip-permissions</pre>
+  <table>
+    <tr><td class="g">ONLY</td><td>Automated tests + git branch + expendable machine</td></tr>
+    <tr><td class="r">NEVER</td><td>main, uncommitted work, open-ended tasks</td></tr>
+  </table>
+  Always: commit first, <code>git diff</code> after.
+</div>
+
+<!-- 24 -->
+<div class="card">
+  <div class="card-head"><span class="num">24</span>CLAUDE CODE >> GEMINI FOR CODING</div>
+  <table>
+    <tr><th>Claude</th><td>Best coding model + harness</td></tr>
+    <tr><th>Gemini</th><td>Good critique & design. Weak harness, ignores "don't edit"</td></tr>
+  </table>
+  Use both for different strengths.
+</div>
+
+<!-- 25 -->
+<div class="card">
+  <div class="card-head"><span class="num">25</span>KNOW WHEN TO HOLD 'EM</div>
+  <table>
+    <tr><th>✅ Trust</th><th>🔍 Review</th><th>🚨 Rewrite</th></tr>
+    <tr><td>Boilerplate, scaffolding</td><td>Business logic, APIs</td><td>Security-critical</td></tr>
+    <tr><td>Tests pass + spec match</td><td>Edge cases, novel algo</td><td>Untestable code</td></tr>
+  </table>
+  <span class="note">Can't verify everything. Ship imperfect. That's the trade-off.</span>
+</div>
+
+<!-- WORKFLOW PATTERNS - bonus reference -->
+<div class="card">
+  <div class="card-head blue"><span class="num">★</span>WORKFLOW PATTERNS — QUICK REF</div>
+  <pre><strong>A · Implement</strong>
+Freeze spec → tickets → agent/ticket
+→ cross-audit (A reviews C) → fix → merge
+
+<strong>B · Verify</strong>
+Spec → stories (no code!) → Selenium
+→ run app → fixers → re-run gate
+
+<strong>C · Research</strong>
+Researcher → Auditor (15% errors caught)
+→ Summarizer. 3x slower, much safer.
+
+<strong>D · Design</strong>
+"3 ways w/ trade-offs" → choose → build</pre>
+</div>
+
+<!-- TAKEAWAYS -->
+<div class="card">
+  <div class="card-head red"><span class="num">★</span>6 TAKEAWAYS</div>
+  <div class="takeaway-grid">
+    <div class="tk"><span class="tn">1</span>Naive AI makes devs slower — be intentional</div>
+    <div class="tk"><span class="tn">2</span>Design agent workflows, not code</div>
+    <div class="tk"><span class="tn">3</span>Smaller context = smarter model</div>
+    <div class="tk"><span class="tn">4</span>Testability determines success</div>
+    <div class="tk"><span class="tn">5</span>Diagram = verification</div>
+    <div class="tk"><span class="tn">6</span>Know when to trust vs. review</div>
+  </div>
+</div>
+
+</div><!-- end cols -->
+
+</body>
+</html>

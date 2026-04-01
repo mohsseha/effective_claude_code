@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <style>
+    text { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1a1a2e; }
+    .box { fill: #ffffff; stroke: #3a5a8c; stroke-width: 2; rx: 6; }
+    .box-new { fill: #fff8f0; stroke: #d4763a; stroke-width: 2; rx: 6; }
+    .arrow { stroke: #5a6a7a; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .shift-arrow { stroke: #d4763a; stroke-width: 2.5; fill: none; marker-end: url(#arrowhead-orange); stroke-dasharray: 8,4; }
+    .label { font-size: 12px; fill: #7a8a9a; }
+    .section-title { font-size: 15px; font-weight: 600; fill: #3a5a8c; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5a6a7a" />
+    </marker>
+    <marker id="arrowhead-orange" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#d4763a" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#fafbfc" rx="8" />
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">The Meta-Programming Shift</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="60" x2="400" y2="390" stroke="#d0d8e0" stroke-width="1" stroke-dasharray="6,4" />
+
+  <!-- LEFT SIDE: Traditional -->
+  <text x="200" y="80" text-anchor="middle" class="section-title">Traditional</text>
+  <text x="200" y="98" text-anchor="middle" class="label">Writing code directly</text>
+
+  <rect x="125" y="140" width="150" height="55" class="box" />
+  <text x="200" y="163" text-anchor="middle" font-size="15" font-weight="500">Developer</text>
+  <text x="200" y="181" text-anchor="middle" font-size="11" fill="#7a8a9a">writes</text>
+
+  <line x1="200" y1="195" x2="200" y2="260" class="arrow" />
+
+  <rect x="125" y="265" width="150" height="55" class="box" />
+  <text x="200" y="288" text-anchor="middle" font-size="15" font-weight="500">Code</text>
+  <text x="200" y="306" text-anchor="middle" font-size="11" fill="#7a8a9a">line by line</text>
+
+  <!-- RIGHT SIDE: Meta-programming -->
+  <text x="600" y="80" text-anchor="middle" class="section-title" fill="#d4763a">Meta-Programming</text>
+  <text x="600" y="98" text-anchor="middle" class="label">Designing agent workflows</text>
+
+  <rect x="525" y="120" width="150" height="55" class="box-new" />
+  <text x="600" y="143" text-anchor="middle" font-size="15" font-weight="500">Developer</text>
+  <text x="600" y="161" text-anchor="middle" font-size="11" fill="#7a8a9a">designs</text>
+
+  <line x1="600" y1="175" x2="600" y2="210" class="arrow" />
+
+  <rect x="500" y="215" width="200" height="55" class="box-new" />
+  <text x="600" y="238" text-anchor="middle" font-size="15" font-weight="500">Agent Workflows</text>
+  <text x="600" y="256" text-anchor="middle" font-size="11" fill="#7a8a9a">specs, prompts, pipelines</text>
+
+  <line x1="600" y1="270" x2="600" y2="305" class="arrow" />
+
+  <rect x="525" y="310" width="150" height="55" class="box" />
+  <text x="600" y="333" text-anchor="middle" font-size="15" font-weight="500">Code</text>
+  <text x="600" y="351" text-anchor="middle" font-size="11" fill="#7a8a9a">generated &amp; tested</text>
+
+  <!-- Shift arrow across the bottom -->
+  <line x1="240" y1="410" x2="540" y2="410" class="shift-arrow" />
+  <text x="390" y="435" text-anchor="middle" font-size="13" fill="#d4763a" font-weight="500">Evolution</text>
+  <text x="390" y="455" text-anchor="middle" font-size="12" fill="#7a8a9a">From writing code to designing systems that write code</text>
+
+  <!-- Emphasis callouts -->
+  <rect x="440" y="395" width="6" height="6" fill="#d4763a" rx="3" />
+  <rect x="460" y="395" width="6" height="6" fill="#d4763a" rx="3" />
+  <rect x="480" y="395" width="6" height="6" fill="#d4763a" rx="3" />
+</svg>

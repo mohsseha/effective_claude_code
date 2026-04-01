@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <style>
+    text { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1a1a2e; }
+    .box { fill: #ffffff; stroke: #3a5a8c; stroke-width: 2; rx: 6; }
+    .box-child { fill: #eef2f7; stroke: #3a5a8c; stroke-width: 1.5; rx: 5; }
+    .box-task { fill: #fff8f0; stroke: #d4763a; stroke-width: 1.5; rx: 5; }
+    .arrow { stroke: #5a6a7a; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .connector { stroke: #5a6a7a; stroke-width: 1.5; fill: none; }
+    .col-title { font-size: 16px; font-weight: 600; }
+    .col-subtitle { font-size: 11px; fill: #7a8a9a; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#5a6a7a" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#fafbfc" rx="8" />
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-size="18" font-weight="600">Claude Code Execution Modes</text>
+
+  <!-- Column dividers -->
+  <line x1="267" y1="55" x2="267" y2="480" stroke="#d0d8e0" stroke-width="1" />
+  <line x1="533" y1="55" x2="533" y2="480" stroke="#d0d8e0" stroke-width="1" />
+
+  <!-- COLUMN 1: Single Session -->
+  <text x="134" y="80" text-anchor="middle" class="col-title">Single Session</text>
+  <text x="134" y="98" text-anchor="middle" class="col-subtitle">One agent, one task</text>
+
+  <rect x="74" y="160" width="120" height="140" class="box" />
+  <text x="134" y="200" text-anchor="middle" font-size="13" font-weight="500">Claude</text>
+  <text x="134" y="220" text-anchor="middle" font-size="13" font-weight="500">Code</text>
+  <text x="134" y="255" text-anchor="middle" font-size="11" fill="#7a8a9a">Interactive</text>
+  <text x="134" y="272" text-anchor="middle" font-size="11" fill="#7a8a9a">session</text>
+
+  <!-- Simple complexity label -->
+  <text x="134" y="380" text-anchor="middle" font-size="12" fill="#3a5a8c" font-weight="500">Simple</text>
+  <text x="134" y="398" text-anchor="middle" font-size="11" fill="#7a8a9a">1 context window</text>
+
+  <!-- COLUMN 2: Subagents -->
+  <text x="400" y="80" text-anchor="middle" class="col-title">Subagents</text>
+  <text x="400" y="98" text-anchor="middle" class="col-subtitle">Parent spawns children</text>
+
+  <!-- Parent -->
+  <rect x="350" y="130" width="100" height="45" class="box" />
+  <text x="400" y="158" text-anchor="middle" font-size="13" font-weight="500">Parent</text>
+
+  <!-- Spawn arrows -->
+  <line x1="370" y1="175" x2="325" y2="215" class="arrow" />
+  <line x1="400" y1="175" x2="400" y2="215" class="arrow" />
+  <line x1="430" y1="175" x2="475" y2="215" class="arrow" />
+
+  <!-- Children -->
+  <rect x="290" y="218" width="70" height="40" class="box-child" />
+  <text x="325" y="243" text-anchor="middle" font-size="11">Task A</text>
+
+  <rect x="365" y="218" width="70" height="40" class="box-child" />
+  <text x="400" y="243" text-anchor="middle" font-size="11">Task B</text>
+
+  <rect x="440" y="218" width="70" height="40" class="box-child" />
+  <text x="475" y="243" text-anchor="middle" font-size="11">Task C</text>
+
+  <!-- Return arrows -->
+  <line x1="325" y1="258" x2="370" y2="295" class="arrow" />
+  <line x1="400" y1="258" x2="400" y2="295" class="arrow" />
+  <line x1="475" y1="258" x2="430" y2="295" class="arrow" />
+
+  <!-- Merge back -->
+  <rect x="350" y="298" width="100" height="40" class="box" />
+  <text x="400" y="323" text-anchor="middle" font-size="12" font-weight="500">Merge</text>
+
+  <text x="400" y="380" text-anchor="middle" font-size="12" fill="#3a5a8c" font-weight="500">Moderate</text>
+  <text x="400" y="398" text-anchor="middle" font-size="11" fill="#7a8a9a">N+1 context windows</text>
+
+  <!-- COLUMN 3: Agent Teams -->
+  <text x="666" y="80" text-anchor="middle" class="col-title">Agent Teams</text>
+  <text x="666" y="98" text-anchor="middle" class="col-subtitle">Peers with shared task list</text>
+
+  <!-- Shared task list -->
+  <rect x="616" y="125" width="100" height="50" class="box-task" />
+  <text x="666" y="147" text-anchor="middle" font-size="11" font-weight="500">Shared</text>
+  <text x="666" y="163" text-anchor="middle" font-size="11" font-weight="500">Task List</text>
+
+  <!-- Agent boxes -->
+  <rect x="580" y="215" width="70" height="45" class="box" />
+  <text x="615" y="234" text-anchor="middle" font-size="11" font-weight="500">Agent</text>
+  <text x="615" y="249" text-anchor="middle" font-size="11" fill="#7a8a9a">1</text>
+
+  <rect x="660" y="215" width="70" height="45" class="box" />
+  <text x="695" y="234" text-anchor="middle" font-size="11" font-weight="500">Agent</text>
+  <text x="695" y="249" text-anchor="middle" font-size="11" fill="#7a8a9a">2</text>
+
+  <rect x="580" y="280" width="70" height="45" class="box" />
+  <text x="615" y="299" text-anchor="middle" font-size="11" font-weight="500">Agent</text>
+  <text x="615" y="314" text-anchor="middle" font-size="11" fill="#7a8a9a">3</text>
+
+  <rect x="660" y="280" width="70" height="45" class="box" />
+  <text x="695" y="299" text-anchor="middle" font-size="11" font-weight="500">Agent</text>
+  <text x="695" y="314" text-anchor="middle" font-size="11" fill="#7a8a9a">4</text>
+
+  <!-- Connections from task list to agents -->
+  <line x1="640" y1="175" x2="615" y2="212" class="arrow" />
+  <line x1="690" y1="175" x2="695" y2="212" class="arrow" />
+  <line x1="640" y1="175" x2="615" y2="277" class="arrow" />
+  <line x1="690" y1="175" x2="695" y2="277" class="arrow" />
+
+  <!-- Peer connections (horizontal) -->
+  <line x1="650" y1="237" x2="660" y2="237" class="connector" stroke-dasharray="3,2" />
+  <line x1="650" y1="302" x2="660" y2="302" class="connector" stroke-dasharray="3,2" />
+  <line x1="615" y1="260" x2="615" y2="280" class="connector" stroke-dasharray="3,2" />
+  <line x1="695" y1="260" x2="695" y2="280" class="connector" stroke-dasharray="3,2" />
+
+  <text x="666" y="380" text-anchor="middle" font-size="12" fill="#d4763a" font-weight="500">Advanced</text>
+  <text x="666" y="398" text-anchor="middle" font-size="11" fill="#7a8a9a">N parallel windows</text>
+
+  <!-- Bottom scale arrow -->
+  <line x1="80" y1="450" x2="720" y2="450" stroke="#d0d8e0" stroke-width="2" marker-end="url(#arrowhead)" />
+  <text x="400" y="475" text-anchor="middle" font-size="12" fill="#7a8a9a">Increasing complexity &amp; parallelism</text>
+</svg>

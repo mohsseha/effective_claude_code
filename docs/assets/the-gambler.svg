@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Background: warm dark tone -->
+  <rect width="400" height="400" fill="#1a1a0e"/>
+
+  <!-- Outer frame -->
+  <rect x="15" y="15" width="370" height="370" fill="none" stroke="#c9a84c" stroke-width="2" rx="4"/>
+
+  <!-- Inner warm gradient -->
+  <radialGradient id="warmGlow" cx="50%" cy="40%" r="50%">
+    <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#1a1a0e" stop-opacity="0"/>
+  </radialGradient>
+  <rect x="20" y="20" width="360" height="360" fill="url(#warmGlow)" rx="2"/>
+
+  <!-- Playing cards fan -->
+  <!-- Card 1 (leftmost, tilted) -->
+  <g transform="translate(120,100) rotate(-25)">
+    <rect x="0" y="0" width="70" height="100" rx="5" fill="#f5f0e1" stroke="#333" stroke-width="1"/>
+    <text x="8" y="22" font-family="Georgia, serif" font-size="16" fill="#c41e3a">A</text>
+    <text x="8" y="38" font-family="Georgia, serif" font-size="14" fill="#c41e3a">&hearts;</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(145,90) rotate(-12)">
+    <rect x="0" y="0" width="70" height="100" rx="5" fill="#f5f0e1" stroke="#333" stroke-width="1"/>
+    <text x="8" y="22" font-family="Georgia, serif" font-size="16" fill="#1a1a2e">K</text>
+    <text x="8" y="38" font-family="Georgia, serif" font-size="14" fill="#1a1a2e">&spades;</text>
+  </g>
+
+  <!-- Card 3 (center) -->
+  <g transform="translate(170,85) rotate(0)">
+    <rect x="0" y="0" width="70" height="100" rx="5" fill="#f5f0e1" stroke="#333" stroke-width="1"/>
+    <text x="8" y="22" font-family="Georgia, serif" font-size="16" fill="#c41e3a">Q</text>
+    <text x="8" y="38" font-family="Georgia, serif" font-size="14" fill="#c41e3a">&diams;</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g transform="translate(195,90) rotate(12)">
+    <rect x="0" y="0" width="70" height="100" rx="5" fill="#f5f0e1" stroke="#333" stroke-width="1"/>
+    <text x="8" y="22" font-family="Georgia, serif" font-size="16" fill="#1a1a2e">J</text>
+    <text x="8" y="38" font-family="Georgia, serif" font-size="14" fill="#1a1a2e">&clubs;</text>
+  </g>
+
+  <!-- Card 5 (rightmost) -->
+  <g transform="translate(215,100) rotate(25)">
+    <rect x="0" y="0" width="70" height="100" rx="5" fill="#f5f0e1" stroke="#333" stroke-width="1"/>
+    <text x="8" y="22" font-family="Georgia, serif" font-size="16" fill="#c41e3a">10</text>
+    <text x="8" y="38" font-family="Georgia, serif" font-size="14" fill="#c41e3a">&hearts;</text>
+  </g>
+
+  <!-- Title text -->
+  <text x="200" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#c9a84c" letter-spacing="3">THE GAMBLER</text>
+
+  <!-- Artist -->
+  <text x="200" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#c9a84c" opacity="0.7" letter-spacing="4">KENNY ROGERS</text>
+
+  <!-- Divider line -->
+  <line x1="120" y1="300" x2="280" y2="300" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Quote -->
+  <text x="200" y="330" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#c9a84c" opacity="0.6" font-style="italic">Know when to hold 'em</text>
+  <text x="200" y="348" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#c9a84c" opacity="0.6" font-style="italic">Know when to fold 'em</text>
+</svg>

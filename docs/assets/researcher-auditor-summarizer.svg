@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" width="800" height="350">
+  <style>
+    text { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  </style>
+  <rect width="800" height="350" fill="#f8f9fa" rx="8"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#4a6fa5"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#2d3748" font-size="17" font-weight="600">3-Agent Fact-Checking Pipeline</text>
+
+  <!-- Researcher box -->
+  <rect x="80" y="100" width="170" height="70" rx="6" fill="#e8edf2" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="165" y="140" text-anchor="middle" fill="#2d3748" font-size="16" font-weight="600">Researcher</text>
+  <!-- Sub-label -->
+  <text x="165" y="205" text-anchor="middle" fill="#5a6b7f" font-size="12">Deep dive in code</text>
+
+  <!-- Arrow 1 -->
+  <line x1="250" y1="135" x2="308" y2="135" stroke="#4a6fa5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Auditor box -->
+  <rect x="315" y="100" width="170" height="70" rx="6" fill="#e8edf2" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="400" y="140" text-anchor="middle" fill="#2d3748" font-size="16" font-weight="600">Auditor</text>
+  <!-- Sub-label -->
+  <text x="400" y="205" text-anchor="middle" fill="#5a6b7f" font-size="12">Verify facts</text>
+  <text x="400" y="222" text-anchor="middle" fill="#d97706" font-size="12" font-weight="600">(caught 15% errors)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="485" y1="135" x2="543" y2="135" stroke="#4a6fa5" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Summarizer box -->
+  <rect x="550" y="100" width="170" height="70" rx="6" fill="#e8edf2" stroke="#4a6fa5" stroke-width="2"/>
+  <text x="635" y="140" text-anchor="middle" fill="#2d3748" font-size="16" font-weight="600">Summarizer</text>
+  <!-- Sub-label -->
+  <text x="635" y="205" text-anchor="middle" fill="#5a6b7f" font-size="12">Clean 2-paragraph answer</text>
+
+  <!-- Bottom note -->
+  <rect x="240" y="270" width="320" height="40" rx="20" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="400" y="295" text-anchor="middle" fill="#d97706" font-size="13" font-weight="500">Pipeline catches errors before user sees them</text>
+</svg>

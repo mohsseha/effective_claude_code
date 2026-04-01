@@ -1,0 +1,35 @@
+[
+  {
+    "id": "agent-1",
+    "type": "GOOD-IDEA",
+    "hypothesis": "Using a sequential researcher-then-auditor-then-summarizer pipeline (3 agents in series) for answering ad-hoc questions produced reliable, fact-checked answers that the developer trusted enough to share externally.",
+    "brief_reasoning": "When the user asked 'what is a hard gate?', the developer demanded a 3-agent serial pipeline: researcher writes a report with source references, auditor verifies all claims against code, summarizer distills it. This pattern was reused at least 3 times (hard gate explanation, staffing buffer question, UI/API visibility question) and each time the auditor caught real issues (e.g., off-by-one line numbers, minor date discrepancies) while confirming substantive facts. The developer trusted the output enough to share it with an external listener, and never had to correct the final answers.",
+    "key_transcript_references": [
+      "line ~22112: 'DON'T GUESS START AN AGENT TO LOOK THOUGH THE TEXT... AFTER THAT HAVE A DIFFERNT AUDIT AGENT READ THE REPROT AND VERIFY THE FACTS... FINALLY HAVE A SUMAMRIZISER'",
+      "line ~22124: 'Audit passed - 23/27 claims fully accurate, 3 off-by-one line numbers, 1 minor date field discrepancy. All substantive facts verified.'",
+      "line ~22144: User reuses the same pattern: 'do the same work flow as above researcher->auditor->summarizer ALL are agents not you'"
+    ]
+  },
+  {
+    "id": "agent-2",
+    "type": "BAD-IDEA",
+    "hypothesis": "Running the orchestrator agent and sub-agents against shared mutable state (live Docker services, databases, filesystem) without explicit locking caused repeated clobbering, forcing sequential fallbacks that negated the parallelism benefits.",
+    "brief_reasoning": "The transcript shows the developer repeatedly discovering that parallel agents interfere with each other when they share the running system. E2E test agents had to run sequentially because they'd 'clobber each other' on the live backend. Agent 4 was explicitly told to 'reset the system before running since Agent 3 may still be using it.' The alternative demo workflow diagram was designed around this constraint (test agent runs A then B then C sequentially). This serialization bottleneck undermined the speed advantage of multi-agent parallelism for any task touching live state.",
+    "key_transcript_references": [
+      "line ~13422: 'Agent 4 is instructed to reset the system before running since Agent 3 may still be using it'",
+      "line ~22206: User explicitly designs around the constraint: 'because you can't run the 3 in parallel or they will clobber each other'",
+      "line ~22258: Test agent workflow forced sequential: 'Sequential: A -> B -> C ... (no clobber)'"
+    ]
+  },
+  {
+    "id": "agent-3",
+    "type": "GOOD-IDEA",
+    "hypothesis": "Requiring cross-agent audit with a quorum rule (at least 3 agents must agree) before modifying frozen source-of-truth documents prevented spec drift and kept the project's canonical artifacts trustworthy across a multi-day, multi-agent build.",
+    "brief_reasoning": "When the user asked agents to update specs to reflect stories, they imposed a strict rule: stories are frozen, specs must adapt, and any proposed story change requires 3-agent consensus plus a written report to the human. This created a clear hierarchy of document authority and prevented the common failure mode where parallel agents silently diverge on assumptions. The pattern was enforced across the spec update phase (lines ~10830) and the audit phase where agents like 'Audit Agent 2' cross-checked v0.5UI specs against E2E stories, catching real inconsistencies (EMP-style IDs, payload mismatches) while respecting the source-of-truth boundary.",
+    "key_transcript_references": [
+      "line ~10830: 'the same agents will audit each others work... if there are contradictions and we need to modify a story we need to have at least 3 agent agree that it is needed and it should be part of a report'",
+      "line ~12106: 'the demo agent should be a clean path from the source-of-truth specs/stories, completely independent of the build'",
+      "line ~17118: 'Audit Agent 2 - Verdict: PASS WITH WARNINGS - All 8 claimed fixes verified. EMP-style IDs fully purged from all spec files.'"
+    ]
+  }
+]

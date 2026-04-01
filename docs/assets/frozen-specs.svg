@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <style>
+    text { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1a1a2e; }
+    .box { fill: #ffffff; stroke: #3a5a8c; stroke-width: 2; rx: 6; }
+    .box-frozen { fill: #eef2f7; stroke: #3a5a8c; stroke-width: 2.5; rx: 6; }
+    .box-track { fill: #ffffff; stroke: #5a7a9c; stroke-width: 1.5; rx: 6; }
+    .box-merge { fill: #fff8f0; stroke: #d4763a; stroke-width: 2; rx: 6; }
+    .arrow { stroke: #5a6a7a; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .arrow-read { stroke: #3a5a8c; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead-blue); stroke-dasharray: 6,3; }
+    .no-arrow { stroke: #cc4444; stroke-width: 2; fill: none; }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5a6a7a" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3a5a8c" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#fafbfc" rx="8" />
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-size="18" font-weight="600">Frozen Spec Architecture</text>
+
+  <!-- Frozen Stories box (top center) -->
+  <rect x="260" y="60" width="280" height="65" class="box-frozen" />
+  <text x="400" y="88" text-anchor="middle" font-size="15" font-weight="600">Frozen Stories</text>
+  <text x="400" y="110" text-anchor="middle" font-size="12" fill="#5a6a7a">Tagged &amp; immutable source of truth</text>
+
+  <!-- Lock icon hint -->
+  <text x="520" y="88" font-size="14" fill="#3a5a8c">&#x1F512;</text>
+
+  <!-- Branch arrows down -->
+  <line x1="330" y1="125" x2="230" y2="180" class="arrow" />
+  <line x1="470" y1="125" x2="570" y2="180" class="arrow" />
+
+  <!-- Build Track (left) -->
+  <rect x="130" y="183" width="200" height="50" class="box-track" />
+  <text x="230" y="204" text-anchor="middle" font-size="14" font-weight="500">Build Track</text>
+  <text x="230" y="222" text-anchor="middle" font-size="11" fill="#7a8a9a">Implementation agents</text>
+
+  <!-- Build Track sub-steps -->
+  <line x1="230" y1="233" x2="230" y2="258" class="arrow" />
+  <rect x="155" y="261" width="150" height="38" class="box" />
+  <text x="230" y="285" text-anchor="middle" font-size="12">Build &amp; Unit Test</text>
+
+  <line x1="230" y1="299" x2="230" y2="324" class="arrow" />
+  <rect x="155" y="327" width="150" height="38" class="box" />
+  <text x="230" y="351" text-anchor="middle" font-size="12">Code Review</text>
+
+  <!-- Demo Track (right) -->
+  <rect x="470" y="183" width="200" height="50" class="box-track" />
+  <text x="570" y="204" text-anchor="middle" font-size="14" font-weight="500">Demo Track</text>
+  <text x="570" y="222" text-anchor="middle" font-size="11" fill="#7a8a9a">Presentation agents</text>
+
+  <!-- Demo Track sub-steps -->
+  <line x1="570" y1="233" x2="570" y2="258" class="arrow" />
+  <rect x="495" y="261" width="150" height="38" class="box" />
+  <text x="570" y="285" text-anchor="middle" font-size="12">Demo Script</text>
+
+  <line x1="570" y1="299" x2="570" y2="324" class="arrow" />
+  <rect x="495" y="327" width="150" height="38" class="box" />
+  <text x="570" y="351" text-anchor="middle" font-size="12">Slide Deck</text>
+
+  <!-- "Reads from" dashed arrows from tracks back to frozen stories -->
+  <line x1="170" y1="183" x2="300" y2="125" class="arrow-read" />
+  <text x="195" y="153" font-size="10" fill="#3a5a8c" transform="rotate(-25, 195, 153)">reads from</text>
+
+  <line x1="630" y1="183" x2="500" y2="125" class="arrow-read" />
+  <text x="590" y="150" font-size="10" fill="#3a5a8c" transform="rotate(25, 590, 150)">reads from</text>
+
+  <!-- "Never reads from each other" X between tracks -->
+  <line x1="340" y1="250" x2="450" y2="250" class="no-arrow" />
+  <line x1="385" y1="240" x2="405" y2="260" stroke="#cc4444" stroke-width="2.5" />
+  <line x1="405" y1="240" x2="385" y2="260" stroke="#cc4444" stroke-width="2.5" />
+  <text x="395" y="235" text-anchor="middle" font-size="10" fill="#cc4444" font-weight="500">no cross-reads</text>
+
+  <!-- Converge arrows to Integration Testing -->
+  <line x1="230" y1="365" x2="330" y2="420" class="arrow" />
+  <line x1="570" y1="365" x2="470" y2="420" class="arrow" />
+
+  <!-- Integration Testing box (bottom center) -->
+  <rect x="280" y="423" width="240" height="55" class="box-merge" />
+  <text x="400" y="448" text-anchor="middle" font-size="15" font-weight="600">Integration Testing</text>
+  <text x="400" y="467" text-anchor="middle" font-size="11" fill="#7a8a9a">Both tracks verified together</text>
+</svg>
