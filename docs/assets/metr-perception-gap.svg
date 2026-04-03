@@ -30,7 +30,7 @@
 
   <!-- Slower / Faster labels -->
   <text x="250" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">Slower</text>
-  <text x="305" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">&larr;</text>
-  <text x="495" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">&rarr;</text>
+  <text x="305" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">&#x2190;</text>
+  <text x="495" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">&#x2192;</text>
   <text x="550" y="365" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#999">Faster</text>
 </svg>

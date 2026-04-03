@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <style>
+    text { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; fill: #1a1a2e; }
+    .axis-label { font-size: 13px; fill: #7a8a9a; font-weight: 500; }
+    .quad-title { font-size: 14px; font-weight: 600; }
+    .quad-examples { font-size: 11px; fill: #7a8a9a; }
+    .quad-priority { font-size: 11px; font-weight: 600; }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#fafbfc" rx="8" />
+
+  <!-- Title -->
+  <text x="400" y="36" text-anchor="middle" font-size="18" font-weight="600">Where to Use AI Coding Agents First</text>
+
+  <!-- Quadrant backgrounds -->
+  <!-- Bottom-left: Sweet Spot (green) -->
+  <rect x="120" y="265" width="280" height="170" fill="#e6f7e9" rx="4" />
+  <!-- Bottom-right: High Leverage -->
+  <rect x="400" y="265" width="280" height="170" fill="#eef2f7" rx="4" />
+  <!-- Top-left: Risky -->
+  <rect x="120" y="65" width="280" height="200" fill="#fff5f0" rx="4" />
+  <!-- Top-right: Danger Zone -->
+  <rect x="400" y="65" width="280" height="200" fill="#fef0f0" rx="4" />
+
+  <!-- Axes -->
+  <!-- X-axis -->
+  <line x1="120" y1="265" x2="680" y2="265" stroke="#5a6a7a" stroke-width="2" />
+  <!-- Y-axis -->
+  <line x1="400" y1="65" x2="400" y2="435" stroke="#5a6a7a" stroke-width="2" />
+
+  <!-- X-axis labels -->
+  <text x="180" y="460" text-anchor="middle" class="axis-label">Easy to Build</text>
+  <text x="620" y="460" text-anchor="middle" class="axis-label">Hard to Build</text>
+  <line x1="140" y1="445" x2="660" y2="445" stroke="#d0d8e0" stroke-width="1.5" marker-end="url(#ax)" marker-start="url(#ax-rev)" />
+
+  <!-- Y-axis labels -->
+  <text x="80" y="165" text-anchor="middle" class="axis-label" transform="rotate(-90, 80, 165)">Hard to Verify</text>
+  <text x="80" y="365" text-anchor="middle" class="axis-label" transform="rotate(-90, 80, 365)">Easy to Verify</text>
+  <line x1="95" y1="85" x2="95" y2="415" stroke="#d0d8e0" stroke-width="1.5" marker-start="url(#ax)" marker-end="url(#ax-rev)" />
+
+  <defs>
+    <marker id="ax" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#d0d8e0" />
+    </marker>
+    <marker id="ax-rev" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#d0d8e0" />
+    </marker>
+  </defs>
+
+  <!-- Bottom-left: Sweet Spot -->
+  <text x="260" y="305" text-anchor="middle" class="quad-title" fill="#1a7a3a">Sweet Spot</text>
+  <text x="260" y="325" text-anchor="middle" class="quad-priority" fill="#1a7a3a">START HERE</text>
+  <text x="260" y="350" text-anchor="middle" class="quad-examples">Boilerplate, scaffolding,</text>
+  <text x="260" y="366" text-anchor="middle" class="quad-examples">tests, migrations</text>
+  <!-- Star icon -->
+  <text x="260" y="410" text-anchor="middle" font-size="22" fill="#1a7a3a">&#9733;</text>
+
+  <!-- Bottom-right: High Leverage -->
+  <text x="540" y="305" text-anchor="middle" class="quad-title" fill="#3a5a8c">High Leverage</text>
+  <text x="540" y="325" text-anchor="middle" class="quad-priority" fill="#3a5a8c">Worth the investment</text>
+  <text x="540" y="350" text-anchor="middle" class="quad-examples">Compilers, math proofs,</text>
+  <text x="540" y="366" text-anchor="middle" class="quad-examples">formal verification</text>
+
+  <!-- Top-left: Risky -->
+  <text x="260" y="135" text-anchor="middle" class="quad-title" fill="#d4763a">Risky</text>
+  <text x="260" y="155" text-anchor="middle" class="quad-priority" fill="#d4763a">Needs extra review</text>
+  <text x="260" y="180" text-anchor="middle" class="quad-examples">Business logic, UI polish,</text>
+  <text x="260" y="196" text-anchor="middle" class="quad-examples">subjective quality</text>
+
+  <!-- Top-right: Danger Zone -->
+  <text x="540" y="135" text-anchor="middle" class="quad-title" fill="#c0392b">Danger Zone</text>
+  <text x="540" y="155" text-anchor="middle" class="quad-priority" fill="#c0392b">Proceed with caution</text>
+  <text x="540" y="180" text-anchor="middle" class="quad-examples">Architecture, security,</text>
+  <text x="540" y="196" text-anchor="middle" class="quad-examples">novel distributed systems</text>
+</svg>

@@ -6,10 +6,17 @@ docs/cheat_sheet.pdf
 # Raw transcripts (large, used to create docs, not reference themselves)
 docs/transcripts/
 
-# Images (only SVGs belong in the repo)
+# Images (only SVGs belong in the repo, with exceptions below)
 *.png
 *.jpg
 *.jpeg
+
+# Force-include assets referenced by slides
+!docs/assets/*.png
+!docs/assets/*.jpg
+
+# Force-include generated PDF for distribution
+!docs/slides.pdf
 
 # OS
 .DS_Store
