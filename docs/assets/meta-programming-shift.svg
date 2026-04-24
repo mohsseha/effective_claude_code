@@ -65,8 +65,4 @@
   <text x="390" y="435" text-anchor="middle" font-size="13" fill="#d4763a" font-weight="500">Evolution</text>
   <text x="390" y="455" text-anchor="middle" font-size="12" fill="#7a8a9a">From writing code to designing systems that write code</text>
 
-  <!-- Emphasis callouts -->
-  <rect x="440" y="395" width="6" height="6" fill="#d4763a" rx="3" />
-  <rect x="460" y="395" width="6" height="6" fill="#d4763a" rx="3" />
-  <rect x="480" y="395" width="6" height="6" fill="#d4763a" rx="3" />
 </svg>

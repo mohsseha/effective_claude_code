@@ -4,176 +4,307 @@ theme: default
 paginate: true
 footer: "Effective Claude Code | Husain | 2026"
 style: |
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
   :root {
-    --color-fg: #1a1a2e;
-    --color-accent: #2563eb;
-    --color-accent-light: #dbeafe;
-    --color-muted: #64748b;
-    --color-border: #e2e8f0;
-    --color-bg-subtle: #f8fafc;
+    --fg: #1a1f2e;
+    --ink: #0d1220;
+    --accent: #0f4c5c;
+    --accent-deep: #082a33;
+    --accent-light: #e6eef0;
+    --amber: #b45309;
+    --border: #e3e5ea;
+    --muted: #5b6472;
+    --bg-subtle: #f5f6f8;
+    --bg-warm: #fbf7f1;
   }
 
+  /* ─── Base ───────────────────────────────────────────────────── */
   section {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    color: var(--color-fg);
-    letter-spacing: -0.01em;
-    line-height: 1.6;
-    padding: 50px 60px;
+    color: var(--fg);
+    background: #ffffff;
+    padding: 56px 72px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    border-top: 5px solid var(--accent);
+    border-image: linear-gradient(to right, var(--accent) 0 62%, var(--amber) 62% 100%) 1;
   }
 
   h1 {
-    font-weight: 700;
-    color: var(--color-accent);
-    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--ink);
+    font-size: 2.6em;
+    line-height: 1.15;
+    margin: 0 0 20px;
     border-bottom: none;
   }
 
+  /* H2: every content slide's title. Same size, same rule, always top. */
   h2 {
-    font-weight: 600;
-    color: var(--color-fg);
-    letter-spacing: -0.02em;
-    border-bottom: 2px solid var(--color-accent);
-    padding-bottom: 8px;
-    margin-bottom: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1.6em;
+    line-height: 1.2;
+    margin: 0 0 22px;
+    padding: 0 0 12px;
+    border: none;
+  }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 3px;
+    background: var(--amber);
+    margin-top: 12px;
   }
 
   h3 {
     font-weight: 600;
-    color: var(--color-muted);
-    letter-spacing: -0.01em;
+    color: var(--accent);
+    font-size: 0.95em;
+    margin: 16px 0 8px;
   }
 
-  strong {
-    font-weight: 600;
-    color: #0f172a;
-  }
+  p { margin: 12px 0; }
 
-  em {
-    color: var(--color-muted);
-  }
+  strong { font-weight: 700; color: var(--ink); }
+  em { color: var(--muted); font-style: italic; }
 
   a {
-    color: var(--color-accent);
+    color: var(--accent);
     text-decoration: none;
+    border-bottom: 1px solid var(--amber);
   }
+  a:hover { color: var(--amber); }
 
-  a:hover {
-    text-decoration: underline;
-  }
-
+  /* ─── Code ───────────────────────────────────────────────────── */
   code {
-    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     font-size: 0.85em;
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    padding: 2px 6px;
+    background: var(--accent-light);
+    border: 1px solid #cfd8da;
+    color: var(--accent-deep);
+    border-radius: 3px;
+    padding: 1px 6px;
   }
 
   pre {
-    background: #1e293b !important;
-    border-radius: 8px;
+    background: #0d1b24 !important;
+    border-radius: 6px;
     padding: 20px 24px !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: none;
+    position: relative;
+    margin: 16px 0;
   }
-
+  pre::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--amber);
+    border-radius: 6px 0 0 6px;
+  }
   pre code {
     background: transparent;
     border: none;
-    color: #e2e8f0;
+    color: #e8eef0;
     font-size: 0.82em;
+    line-height: 1.55;
     padding: 0;
   }
 
+  /* ─── Tables (editorial: ruled, no box, centered, symmetric padding) ─ */
   table {
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
     width: 100%;
-    font-size: 0.88em;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    max-width: 900px;
+    margin: 18px auto;
+    font-size: 0.82em;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    font-variant-numeric: tabular-nums;
+    table-layout: auto;
   }
-
+  table thead tr {
+    border-top: 2.5px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
   table th {
-    background: var(--color-accent);
-    color: white;
-    font-weight: 600;
-    padding: 10px 16px;
+    background: transparent;
+    color: var(--ink);
+    font-weight: 700;
+    text-align: left;
+    padding: 12px 14px;
+    border: none;
+    line-height: 1.25;
+    vertical-align: bottom;
+  }
+  table td {
+    padding: 12px 14px;
     text-align: left;
     border: none;
+    border-bottom: 1px solid rgba(11, 31, 48, 0.15);
+    vertical-align: top;
+    line-height: 1.45;
+    color: var(--fg);
+  }
+  table tbody tr:last-child td { border-bottom: 1.5px solid var(--ink); }
+  table tbody tr td { background: transparent !important; }
+  table th:first-child,
+  table td:first-child { padding-left: 0; }
+  table th:last-child,
+  table td:last-child { padding-right: 0; }
+  table td:first-child {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  table strong { font-weight: 700; color: var(--ink); }
+  table td:first-child strong { color: var(--accent); }
+
+  /* Split-bg tables: tighter, constrained to the column */
+  section[style*="background-image"] table,
+  section[style*="--marpit-advanced-background-split"] table {
+    font-size: 0.74em;
+    max-width: 100%;
+    margin: 14px 0;
+  }
+  section[style*="background-image"] table th,
+  section[style*="background-image"] table td,
+  section[style*="--marpit-advanced-background-split"] table th,
+  section[style*="--marpit-advanced-background-split"] table td {
+    padding: 9px 10px;
   }
 
-  table td {
-    padding: 9px 16px;
-    border-bottom: 1px solid var(--color-border);
-    border-left: none;
-    border-right: none;
-  }
-
-  table tr:nth-child(even) td {
-    background: var(--color-bg-subtle);
-  }
-
-  table tr:last-child td {
-    border-bottom: none;
-  }
-
+  /* ─── Blockquote ─────────────────────────────────────────────── */
   blockquote {
-    border-left: 4px solid var(--color-accent);
-    background: var(--color-accent-light);
-    padding: 12px 20px;
-    border-radius: 0 6px 6px 0;
+    border-left: 3px solid var(--amber);
+    background: var(--bg-warm);
+    padding: 10px 18px;
     margin: 16px 0;
-    color: #1e3a5f;
+    color: var(--ink);
+    font-style: italic;
+    border-radius: 0 3px 3px 0;
   }
+  blockquote p { margin: 4px 0; }
 
-  blockquote p {
-    margin: 4px 0;
-  }
-
+  /* ─── Lists ──────────────────────────────────────────────────── */
   ul, ol {
-    margin-left: 0;
-    padding-left: 1.4em;
-    text-align: left;
-    width: 100%;
+    margin: 12px 0;
+    padding-left: 1.3em;
   }
+  li { margin-bottom: 5px; }
+  li::marker { color: var(--amber); }
 
-  li {
-    margin-bottom: 6px;
-  }
-
+  /* ─── Footer / pagination ────────────────────────────────────── */
   footer {
-    font-size: 0.7em;
-    color: var(--color-muted);
-    letter-spacing: 0.02em;
+    font-size: 0.6em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  section::after {
+    font-size: 0.62em;
+    color: var(--muted);
+    font-weight: 500;
   }
 
-  /* Title slide */
-  section:first-of-type {
-    text-align: center;
+  /* ─── Split-bg content slides (right-side image) ─────────────
+     Marp puts a background-image on the section; content fills the
+     remaining column. Same layout rules, just slightly smaller type. */
+  section[style*="background-image"],
+  section[style*="--marpit-advanced-background-split"] {
+    font-size: 0.95em;
+  }
+  section[style*="background-image"] h2,
+  section[style*="--marpit-advanced-background-split"] h2 {
+    font-size: 1.45em;
+  }
+  section[style*="background-image"] li,
+  section[style*="--marpit-advanced-background-split"] li {
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  section[style*="background-image"] table,
+  section[style*="--marpit-advanced-background-split"] table {
+    font-size: 0.78em;
+  }
+
+  /* ─── Hero slides: title slide + closing slide + lead ─────── */
+  section.lead,
+  section:first-of-type,
+  section[id="20"] {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, var(--bg-warm) 100%);
+  }
+
+  section.lead h1,
+  section.lead h2,
+  section:first-of-type h1,
+  section[id="20"] h2 {
+    text-align: center;
+  }
+
+  section.lead h2::after,
+  section:first-of-type h1::after,
+  section[id="20"] h2::after {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   section:first-of-type h1 {
-    font-size: 2.4em;
-    margin-bottom: 8px;
+    font-size: 3em;
+    margin-bottom: 24px;
   }
 
-  /* Lead slides */
-  section.lead h1 {
-    color: var(--color-accent);
+  section:first-of-type h1::after {
+    width: 72px;
+    height: 4px;
+    margin-top: 20px;
   }
+
+  section:first-of-type p {
+    color: var(--muted);
+    font-size: 1.05em;
+    max-width: 32em;
+    margin: 6px 0;
+  }
+
+  section:first-of-type strong { color: var(--accent); }
+
+  section[id="20"] h2 {
+    font-size: 2.8em;
+    font-weight: 800;
+  }
+  section[id="20"] h2::after {
+    width: 96px;
+    height: 4px;
+    margin-top: 24px;
+  }
+  section[id="20"] p {
+    color: var(--accent);
+    font-size: 1.25em;
+    font-weight: 700;
+  }
+
+  /* ─── Full-bleed image slide ─────────────────────────────────── */
+  section.fullbleed {
+    padding: 0;
+    border: none;
+  }
+  section.fullbleed::before,
+  section.fullbleed::after { display: none; }
 ---
 
 # Effective Claude Code
 
-Patterns from building a platform in 5 days
+A snapshot of best practices for coding with AI agents — April 2026
 
 **Husain Al-Mohssen, PhD**
 
@@ -193,9 +324,9 @@ Patterns from building a platform in 5 days
 
 ---
 
-## The Uncertainty Is the Point
+## Software Engineering in 2026: The Uncertainty Is the Point
 
-![bg right:33% 80%](assets/we-didnt-start-the-fire.jpg)
+![bg right:38% 90%](assets/we-didnt-start-the-fire.jpg)
 
 - No one has this figured out. Not us, not anyone.
 - The imperfection is permanent, not temporary.
@@ -209,7 +340,7 @@ A field report, not a playbook.
 
 ![bg right:40% contain](assets/metr-perception-gap.png)
 
-[METR 2025 RCT](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-developers/): 16 experienced OSS developers
+[METR 2025 RCT](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/): 16 experienced OSS developers
 
 - **19% slower** with AI
 - *Believed* they were **20% faster**
@@ -234,7 +365,7 @@ Not tips and tricks. **Structural patterns.**
 
 ## Context Is Everything
 
-![bg right:45% contain](assets/context-degradation.svg)
+![bg right:45% contain](assets/context-rot-ruler.png)
 
 | Model | 4K | 128K | Drop |
 |-------|-----|------|------|
@@ -541,6 +672,7 @@ Ask it things like:
 
 ---
 
+<!-- _class: fullbleed -->
 <!-- _footer: "" -->
 <!-- _paginate: false -->
 

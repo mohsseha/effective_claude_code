@@ -9,6 +9,7 @@ Best-practices reference material for using Claude Code effectively, distilled f
 | [spec_driven_dev.md](spec_driven_dev.md) | Spec-driven development — why the spec, not the code, is the load-bearing artifact when working with AI agents. Surveys Osmani, Karpathy, GitHub Spec Kit, Anthropic, Thoughtworks, and others. |
 | [testability_thesis.md](testability_thesis.md) | The testability thesis — AI agents succeed when outputs are concretely verifiable. Anchored by the Anthropic C compiler case study (16 parallel Claudes, 100K lines of Rust). |
 | [context_degradation.md](context_degradation.md) | Context length degrades LLM performance. RULER benchmark data, "Lost in the Middle" findings, and why agent design is really context management. |
+| [context_degradation_2026.md](context_degradation_2026.md) | 2025–2026 refresh: NoLiMa, MRCR v2 at 1M, Chroma Context Rot, HELMET, SWE-Bench Pro. Includes three candidate replacement figures for the slide deck. |
 | [verification_by_explanation.md](verification_by_explanation.md) | Verification by explanation — using structured output (tables, scorecards, audit reports) to make human review of agent work feasible. 12 real examples catalogued. |
 | [agent_commands.md](agent_commands.md) | Practical command reference for spawning, controlling, and orchestrating Claude Code agents (subagents, agent teams, exact phrasing that works). |
 | [agent_modes.md](agent_modes.md) | Agent orchestration patterns — researcher/auditor/summarizer pipelines, cross-audit, build-test-audit-select. |
