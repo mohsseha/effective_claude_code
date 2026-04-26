@@ -6,6 +6,14 @@ This repo has two parts: **reference documentation** and a **live advisor servic
 
 ---
 
+## Talk & Slides
+
+[![Watch the talk on YouTube](https://img.youtube.com/vi/zQbD_JMSXnU/maxresdefault.jpg)](https://youtu.be/zQbD_JMSXnU)
+
+📺 **[Watch on YouTube](https://youtu.be/zQbD_JMSXnU)** &nbsp;·&nbsp; 📄 **[Slides (PDF)](docs/slides.pdf)** &nbsp;·&nbsp; 📝 **[Slide source](docs/slides.md)**
+
+---
+
 ## Quick Start: The Advisor
 
 The advisor is a coaching TUI that helps you use Claude Code more effectively in real time. Launch it alongside your coding session:
@@ -49,7 +57,7 @@ All reference material lives in [`docs/`](docs/). See [`docs/README.md`](docs/RE
 
 ### Presentation
 
-The slide deck (`docs/slides.md`) is a [Marp](https://marp.app/) presentation. Generate the PDF:
+The slide deck (`docs/slides.md`) is a [Marp](https://marp.app/) presentation that accompanies the [YouTube talk](https://youtu.be/zQbD_JMSXnU). The rendered PDF is committed at [`docs/slides.pdf`](docs/slides.pdf); to regenerate it:
 
 ```bash
 cd docs && ./gen_slides.sh
